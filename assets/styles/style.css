@@ -1,0 +1,345 @@
+/* paramètres généraux */
+@font-face {
+    font-family: "font-reg";
+    src: url(../fonts/PlayfairDisplay-Regular.ttf);
+}
+@font-face {
+    font-family: "font-bold";
+    src: url(../fonts/PlayfairDisplay-ExtraBold.ttf);
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+/* couleur selection du texte */
+*::selection {
+    background: #000101;
+    color: #fefeff;
+}
+/* effet scroll  */
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: "font-reg", serif;
+    background: #000101;
+    color: #fefeff;
+    transition: 0.7s ease-in-out;
+}
+.wrapper{
+    perspective: 800px;
+}
+/* effets transition d'apparition */
+.appear {
+    opacity: 0;
+    transform: translateY(100%) rotateX(-80deg);
+    transform-origin: top center;
+    transform-style: preserve-3d;
+    transition: 0.8s cubic-bezier(0.215,0.61,0.355,1);
+}
+.appear.is-inview{
+    opacity: 1;
+    transition-delay: 1s;
+    transform: none;
+}
+h2 {
+    /* calcul la taille à adapter selon largeur de l'écran min 3rem */
+    font-size: calc(3rem + 4vw); 
+    text-align: center;
+    color: rgb(217, 217, 217);
+    font-family: "font-bold", serif;
+    letter-spacing: 3px;
+}
+.title {
+    font-size: calc(1.5rem + 4vw);
+    letter-spacing: 0px;
+}
+span {
+    display: inline-block;
+}
+a, a:visited {
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    color: #fefeff;
+    transition: 0.1s linear;
+    font-size: calc(0.8rem + 0.8vw);
+}
+a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    background: #fefeff;
+    height: 1px;
+    bottom: -4px;
+    left: 0;
+    /* indique le départ de l'animation à partir de la gauche */
+    /* transform-origin: left ; */
+}
+a:hover {
+    /* la scale fonctionne car il y a le display:flex du header */
+    transform: scale(1.04);
+    color: rgb(217, 217, 217);
+}
+a:hover::after {
+    animation: animeLink 1.4s infinite ease-in-out;
+}
+/* on paramètre "crée" notre animation */
+@keyframes animeLink {
+    50% {
+        transform: scaleX(0.2);
+    }
+    100% {
+        transform: scaleX(1);
+    }       
+}
+.img {
+    height: 400px;
+    width: 100vw;
+    max-width: 395px;
+    margin: 0 auto;
+    /* effet noir et blanc des image */
+    filter: grayscale(100%);
+    transition: 1.6s;
+}
+.img:hover {
+    filter: grayscale(10%);
+}
+/* ligne de séparation des sections */
+.line {
+    height: 2px;
+    width: 70%;
+    margin: 0 auto;
+    background: #000101;
+    transition: 1s cubic-bezier(0.77, 0, 0.18, 1);
+    /* transform-origin: left; */
+    transition-delay: 0.50s;
+    opacity: 0;
+    transform: scaleX(0);
+}
+.line-wrapper.is-inview .line{
+    opacity: 1;
+    transform: scaleX(1);
+}
+/* paramètres par ordre d'apparition */
+/* section header */
+header {
+    height: 100vh;
+    position: relative;
+    margin: 1.5vw 2vw 0;
+}
+.links {
+    display: flex;
+    justify-content: space-between;
+}
+#h1-wrapper {
+    transition-delay: .5s;
+}
+h1 {
+    font-size: calc(2rem + 6vw);
+    margin-top: 50px;
+    font-family: "font-bold", serif;
+    letter-spacing: 5px;
+}
+#h2-1{
+
+    transition-delay: .9s;
+}
+#h2-2{
+    transition-delay: 1.2s;
+}
+header h2 {
+    margin: 15px 0;
+    text-align: left;
+    font-size: calc(1rem + 5vw);
+}
+.scroll-wrapper {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 3.5vw;
+    color: rgb(217, 217, 217);
+    font-size: calc(0.8rem + 0.5vw);
+}
+/* section about */
+.about {
+    margin: 400px 0 250px;
+}
+.img1 {
+    height: 400px;
+    width: 100%;
+    max-width: 100%;
+    background: url(../img/labo.jpeg) center/cover;
+    /* background: url(../img/dr-dalila.jpeg) top/cover; */
+}
+.h2-wrapper {
+    /* pouvoir lire à traver le titre */
+    mix-blend-mode: exclusion;
+    margin: -200px 0 200px;
+}
+.about p {
+    width: 70%;
+    min-width: 280px;
+    text-align: center;
+    margin: 0 auto;
+    line-height: calc(7px + 4.5vw);
+    font-size: calc(1rem + 1vw);
+    letter-spacing: 1px;
+}
+/* partie expertise */
+.skills {
+    margin : 200px 0 250px
+}
+.skills h2 {
+    margin-bottom: 150px;
+}
+.skills .wrapper {
+    margin: 30px 0;
+}
+.skills .appear {
+    text-align: center;
+    transition-delay: .6s;
+}
+.skills p {
+    font-size: calc(1rem + 6vw);
+    font-family: "font-bold", serif;
+    letter-spacing: 4px;
+    background: #000101;
+    color: #fefeff;
+    display: inline-block;
+    padding: 0 12px 12px;
+}
+/* portfolio / projet */
+.portfolio {
+    margin: 200px 0;
+}
+.projects-container {
+    margin-top: 100px;
+}
+.project {
+    position: relative;
+    width: 60vw;
+    max-width: 600px;
+    margin: 50px 5vw;
+}
+.project::before{
+    content: "";
+    position: absolute;
+    height: 110%;
+    width: 100%;
+    top: -3px;
+    background: #fefeff;
+    transition: width 1s ease-out;
+    transition-delay: .85s;
+}
+.project.is-inview::before {
+    width: 0;
+}
+#p2 {
+    margin: 0 6vw 0 auto;
+}
+#p3 {
+    margin-left: 8vw;
+}
+.project img{
+    transition: 0.4s ease-out;
+    width: 100%;
+}
+.project:hover img {
+    filter: brightness(20%);
+}
+.project:hover .project-infos {
+    opacity: 1;
+    transform: translate(0, -50%);
+}
+.project-infos {
+    position: absolute;
+    top: 50%;
+    transform : translate(-50px, -50%);
+    margin-left: 8vw;
+    transition: 0.4s ease-out;
+    opacity: 0;
+}
+.project-infos a {
+    font-size: calc(1rem + 3vw);
+}
+.project-infos p {
+    font-size: 2rem;
+    margin-top: 1.5vw;
+    color: #fefeff;
+}
+/* contact */
+.contact {
+    margin: 150px 0 120px;
+}
+.contact p {
+    font-size: calc(1rem + 2vw);
+    margin: 25px 0;
+    /* font-weight: 900; */
+    text-align: center;
+}
+#l2 {
+    transition-delay: 1.2s;
+}
+#l3 {
+    transition-delay: 1.6s;
+}
+#l4 {
+    transition-delay: 2s;
+}
+.contact a {
+    font-size: "font-bold", serif;
+    color: #000101;
+    font-size: calc(1rem + 2vw);
+}
+.img2{
+    background: url(../img/dr-dalila.jpeg) center/cover;
+}
+
+/* footer */
+footer {
+    height: 150px;
+    margin: 20px 0 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+footer span {
+    position: relative;
+    font-size: calc(0.8rem + 0.1vw);
+    margin: 25px;
+    font-weight: 500;
+    text-align: center;
+    color: #000101;
+}
+footer span:not(:last-child):after {
+    content: '';
+    position: absolute;
+    width: .4rem;
+    height: .4rem;
+    border-radius: 50%;
+    background: #000101;
+    margin: 6px 10px 10px;
+}
+footer i{
+    color: #000101;
+    width: 20px;
+    height: 20px;
+}
+
+footer a {
+    font-size: "font-bold", serif;
+    color: #000101;
+    font-size: 1rem;
+}
+@media (max-width: 650px) {
+    footer {
+        flex-direction: column-reverse;
+    }
+    footer span {
+        margin: 10px;
+    }
+    
+}
+
